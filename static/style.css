@@ -1,158 +1,93 @@
-/* ------------------------------------------ */
-/* フォント指定のCSS */
-/* ------------------------------------------ */
-
-.custom-font {
-  font-family: "Mochiy Pop One", sans-serif;
-}
-
-/* ---------------------------------- */
-/* メインコンテンツのCSS */
-/* ---------------------------------- */
-
+/* 全体の設定 */
 body {
-  background-color: #333333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #f4f6f9;
+    color: #333;
 }
 
-.content-flex {
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
+/* メインの白い箱 */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.camera-card {
-  position: relative;
+/* アプリのアイコン画像 */
+.app-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 22px;
+    box-shadow: 0 8px 16px rgba(0,0,100,0.2);
+    margin-bottom: 10px;
+    object-fit: cover;
 }
 
-.camera-card-text {
-  position: absolute;
-  right: 10px;
-  bottom: 0px;
-  padding: 2px 5px;
-  font-size: 11px;
-  background-color: #fff;
-  border-radius: 5px;
-  opacity: 0.8;
+/* タイトルと説明文 */
+h1 {
+    margin-top: 5px;
+    font-size: 28px;
+    color: #2c3e50;
+    letter-spacing: 1px;
+}
+p {
+    color: #666;
+    margin-bottom: 20px;
 }
 
-.preview-card-landscape {
-  flex: 1;
-  overflow: hidden;
-  text-align: center;
-  background-color: #333333;
+/* カメラ映像と画像のスタイル */
+video, img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.preview-card-landscape img {
-  width: 100%;
-  height: 100vh;
-  height: -webkit-fill-available;
-  object-fit: contain;
+/* スキャンボタンのデザイン */
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 25px;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+    transition: transform 0.1s;
+}
+button:active {
+    transform: scale(0.96); /* 押した時に少し凹む演出 */
 }
 
-.preview-card-landscape .camera-card-text {
-  position: absolute;
-  right: 20px;
-  bottom: 10px;
-  padding: 5px;
-  font: 11px "Mochiy Pop One";
-  background-color: #fff;
-  border-radius: 5px;
+/* 読み込み中や非表示の制御 */
+#loading {
+    display: none;
+    color: #764ba2;
+    margin-top: 15px;
+    font-weight: bold;
+}
+.hidden {
+    display: none;
 }
 
-/* ------------------------------------------ */
-/* キャラクタと吹き出しに関するCSS */
-/* ------------------------------------------ */
-
-.character-box {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.left-image {
-  width: 20%;
-  margin-right: 20px;
-}
-
-.speech-bubble {
-  position: relative;
-  width: 100%;
-  height: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #e6d716;
-  margin-left: 10px;
-  padding: 20px 20px 20px 10px;
-  border-radius: 10px;
-}
-
-.speech-bubble:after {
-  border: solid transparent;
-  content: "";
-  height: 0;
-  width: 0;
-  pointer-events: none;
-  position: absolute;
-  border-color: rgba(230, 215, 22, 0);
-  border-top-width: 10px;
-  border-bottom-width: 10px;
-  border-left-width: 15px;
-  border-right-width: 15px;
-  margin-top: -10px;
-  border-right-color: #e6d716;
-  right: 100%;
-  top: 48%;
-}
-
-#speech-bubble-text {
-  font-size: 14px;
-}
-
-/* ------------------------------------------ */
-/* リスト表示に関するCSS */
-/* ------------------------------------------ */
-
-.records {
-  flex: 1;
-  overflow: scroll;
-  min-height: 50px;
-}
-
-.records-item {
-  padding: 0;
-}
-
-.records-item-left {
-  width: 30%;
-  padding: 0;
-}
-
-.records-item-left a {
-  line-height: 0;
-}
-
-.records-item-left img {
-  width: 100%;
-}
-
-.records-item-center {
-  width: 70%;
-  padding: 0;
-  overflow-x: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  user-select: all;
-}
-
-.records-item-center::-webkit-scrollbar {
-  display: none;
-}
-
-.records-item-center p {
-  width: 100%;
-  font: normal 3vw "Mochiy Pop One";
-  text-align: center;
-  margin: 0;
-  margin-left: 10px;
+/* 診断レポート（黒い背景の文字） */
+#result_text {
+    text-align: left;
+    background-color: #1e1e1e;
+    color: #00ff9d;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: "Menlo", monospace;
+    white-space: pre-wrap;
+    margin-top: 20px;
+    font-size: 0.85em;
+    line-height: 1.6;
+    border-left: 5px solid #764ba2;
 }
